@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+
+<div class="text-2xl">Articles</div>
+<% @articles.each do |article| %>
+ <%= render partial: "article", locals: { article: article } %>
+<% end %>
+
+
+<%= link_to 'New Article', new_article_path %>
+<%= link_to 'Delete', new_article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
