@@ -1,0 +1,16 @@
+<div class="container">
+<h1 class="text-2xl">Editing article</h1>
+
+<%= render "form", article: @article %>
+
+
+<button class="text-red-600 font-bold p-2 rounded-full">
+<%= link_to "Delete this article", article_path(@article), data: {
+turbo_method: :delete,
+turbo_confirm: "Are you sure you want to delete the article?"
+} %>
+</button>
+<button class="bg-bermuda font-bold p-2 rounded-full">
+<%= link_to 'Back to Articles', articles_path %>
+</button>
+</div>
