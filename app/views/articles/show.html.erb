@@ -4,6 +4,10 @@
 <p><%= @article.body %></p>
 <p>Status: <%= @article.published ? 'Published' : 'Draft' %></p>
 
+<% if @article.image.attached? %>
+<%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back to Articles', articles_path %>

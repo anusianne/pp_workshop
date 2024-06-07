@@ -1,9 +1,12 @@
 <div class="container">
 <h1 class="text-2xl">Editing article</h1>
 
+
+<% if @article.image.attached? %>
+<td><%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %></td>
+<% end %>
+
 <%= render "form", article: @article %>
-
-
 <button class="text-red-600 font-bold p-2 rounded-full">
 <%= link_to "Delete this article", article_path(@article), data: {
 turbo_method: :delete,

@@ -2,6 +2,11 @@
   <td><%= article.title %></td>
   <td ><%= article.body %></td>
   <td ><%= article.published ? 'Published' : 'Draft' %></td>
+  
+  <% if article.image.attached? %>
+  <td><%= image_tag article.image.variant(resize_to_fit: [200, 200]) %></td>
+  <% end %>
+  
   <td>
     <button class="bg-transparent hover:bg-green-500 text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
  <%= link_to 'Show', article_path(article) %>
