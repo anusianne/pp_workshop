@@ -4,7 +4,14 @@
 
 <% if @article.image.attached? %>
 <td><%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %></td>
-<% end %>
+
+<p>
+  <strong>File:</strong>
+    <%= @article.image.filename %>
+  <% else %>
+    No file attached.
+  <% end %>
+</p>
 
 <%= render "form", article: @article %>
 <button class="text-red-600 font-bold p-2 rounded-full">

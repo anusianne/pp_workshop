@@ -6,7 +6,14 @@
 
 <% if @article.image.attached? %>
 <%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
-<% end %>
+
+<p>
+  <strong>File:</strong>
+    <%= @article.image.filename %>
+  <% else %>
+    No file attached.
+  <% end %>
+</p>
 
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
