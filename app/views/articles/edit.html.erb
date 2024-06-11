@@ -1,10 +1,8 @@
 <div class="container">
 <h1 class="text-2xl">Editing article</h1>
 
-
 <% if @article.image.attached? %>
 <td><%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %></td>
-
 <p>
   <strong>File:</strong>
     <%= @article.image.filename %>
@@ -12,7 +10,6 @@
     No file attached.
   <% end %>
 </p>
-
 <%= render "form", article: @article %>
 <button class="text-red-600 font-bold p-2 rounded-full">
 <%= link_to "Delete this article", article_path(@article), data: {
