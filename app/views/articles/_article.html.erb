@@ -1,31 +1,29 @@
-<div class="flex flex-col bg-white border shadow-lg rounded-lg w-1/4">
-  <h3 class="text-lg font-bold pt-8">
+<div class="grid items-center justify-between bg-white border shadow-lg rounded-lg w-30 p-4 mt-5">
+  <div class="grid grid-cols-2">
+    <h3 class="text-lg font-bold">
       <%= article.title %>
-  </h3>
+    </h3>
   <p class="mt-1 text-xs font-medium uppercase text-gray-500">
     <%= article.body %>
   </p>
   <p class="mt-2 text-gray-500">
-<%= article.published ? 'Published' : 'Draft' %>  </p>
-<div class="flex">
-      <button class="bg-transparent hover:bg-green-500 text-green-500 font-semibold hover:text-white py-2 px-5 border border-green-500 hover:border-transparent rounded">
- <%= link_to 'Show', article_path(article) %>
- <%= heroicon_tag "eye" %>
-</button>
-      <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-5 border border-blue-500 hover:border-transparent rounded">
- <%= link_to 'Edit', edit_article_path(article) %>
- <%= heroicon_tag "pencil" %>
-</button>
-  <button class="bg-transparent hover:bg-red-500 text-red-500 font-semibold hover:text-white py-2 px-5 border border-red-500 hover:border-transparent rounded">
-  <%= link_to 'Delete', article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the article?" } %>
-<%= heroicon_tag "trash" %>
-</button>
+    <%= article.published ? 'Published' : 'Draft' %>
+  </p>
+    <% if article.image.attached? %>
+      <%= image_tag article.image.variant(resize_to_fit: [100, 100]) %>
+    <% end %>
+      <button type="button" class="bg-transparent hover:bg-green-500 text-green-500 font-semibold hover:text-white py-2 px-3 border border-green-500 hover:border-transparent rounded text-sm">
+        <%= link_to 'Show', article_path(article) %>
+        <%= heroicon_tag "eye" %>
+      </button>
+      <button type="button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-3 border border-blue-500 hover:border-transparent rounded text-sm">
+        <%= link_to 'Edit', edit_article_path(article) %>
+        <%= heroicon_tag "pencil" %>
+      </button>
+      <button type="button" class="bg-transparent hover:bg-red-500 text-red-500 font-semibold hover:text-white py-2 px-3 border border-red-500 hover:border-transparent rounded text-sm">
+        <%= link_to 'Delete', article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the article?" } %>
+        <%= heroicon_tag "trash" %>
+      </button>
 </div>
-<div>
-  <% if article.image.attached? %>
-  <%= image_tag article.image.variant(resize_to_fit: [100, 100]) %></td>
-  <% end %>
-  </div>
 </div>
-
 <br>
