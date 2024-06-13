@@ -3,7 +3,6 @@
    <div id="error_explanation">
      <h2 class="text-red-500 text-center font-bold"><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-
      <ul>
        <% article.errors.full_messages.each do |message| %>
          <li class="text-red-500 text-center font-bold"><%= message %></li>

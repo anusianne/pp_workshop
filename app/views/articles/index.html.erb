@@ -1,12 +1,11 @@
-<div class="container">
-  <h1 class="text-2xl text-center font-bold">Articles</h1>
-<button class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
- <%= link_to 'New Article', new_article_path %>
-</button>
+<div class="container grid place-items-center min-h-screen">
+  <h1 class="text-2xl text-center font-bold mb-4">Articles</h1>
+  <button class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded-full mb-4">
+    <%= link_to 'New Article', new_article_path %>
+  </button>
+  <div class="w-full">
+    <% @articles.each do |article| %>
+      <%= render partial: "article", locals: { article: article } %>
+    <% end %>
+  </div>
 </div>
-<br>
-       <% @articles.each do |article| %>
-        <%= render partial: "article", locals: { article: article } %>
-      <% end %>
-
-
