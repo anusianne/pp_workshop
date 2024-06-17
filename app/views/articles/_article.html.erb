@@ -10,7 +10,7 @@
     <p class="mt-2 text-gray-500 col-span-6">
       <%= article.published ? 'Published' : 'Draft' %>
     </p>
-    <% if article.image.attached? %>
+    <% if article.image.attached? && article.image.persisted? %>
       <%= image_tag article.image.variant(resize_to_fit: [100, 100]), class: "col-span-6" %>
     <% end %>
      

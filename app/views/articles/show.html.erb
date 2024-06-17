@@ -4,7 +4,7 @@
 <p><%= @article.body %></p>
 <p>Status: <%= @article.published ? 'Published' : 'Draft' %></p>
 
-<% if @article.image.attached? %>
+<% if @article.image.attached? && @article.image.persisted? %>
 <%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
 
 <p>
