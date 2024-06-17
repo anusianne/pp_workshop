@@ -1,7 +1,10 @@
-<h1><%= @article.title %></h1>
+
+<div class="grid bg-white border shadow-lg rounded-lg mt-8 w-1/2 ml-96 h-80 p-12">
+  <div class="pl-16 pt-4">
+<h1 class="font-bold"><%= @article.title %></h1>
 
 
-<p><%= @article.body %></p>
+<p class=pt-4><%= @article.body %></p>
 <p>Status: <%= @article.published ? 'Published' : 'Draft' %></p>
 
 <% if @article.image.attached? && @article.image.persisted? %>
@@ -15,10 +18,13 @@
   <% end %>
 </p>
 
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<div class="pt-4 flex flex-col items-end">
+<%= link_to 'Edit', edit_article_path(@article) %> 
 <%= link_to 'Back to Articles', articles_path %>
 <%= link_to "Delete this article", articles_path(@article), data: {
 turbo_method: :delete,
 turbo_confirm: "Are you sure you want to delete the article?"
 } %>
+</div>
+</div>
+</div>
