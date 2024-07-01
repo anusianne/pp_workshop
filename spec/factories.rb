@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :article do
-      title { Faker::Lorem.sentence(word_count: 4) }
+      title { Faker::Lorem.characters(number: 30) }
       body { Faker::Lorem.paragraph(sentence_count: 3) }
       published { [true, false].sample }
   
@@ -11,4 +11,3 @@ FactoryBot.define do
       end
     end
   end
-  
