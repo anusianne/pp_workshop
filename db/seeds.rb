@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# spec/factories/articles.rb
+
+5.times do
+  FactoryBot.create(:article)
+end
+
