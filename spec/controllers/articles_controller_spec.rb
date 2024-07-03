@@ -42,8 +42,24 @@ it "redirects to the article's show page" do
 end
 end
 
-
   describe "DELETE #destroy" do
+  subject(:destroy) {delete :destroy, params: {id: article.id}}
+  let!(:article) { create(:article) } 
+  
+  it "deletes the article" do
+    expect { destroy }.to change(Article, :count).by(-1)
+  end
+
+  it "redirects to the articles index" do
+    destroy
+    expect(response).to redirect_to(articles_path)
   end
 end
+end
 
+
+
+
+   
+
+   
