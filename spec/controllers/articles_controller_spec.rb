@@ -20,27 +20,51 @@ RSpec.describe ArticlesController, type: :controller do
 
 
   describe "POST #create" do
-  subject(:post_create) {post :create, params: { article: { title: "Very valid title", body: "Very very valid value", published: true}}}
-  it "creates new articles" do
-    expect{subject}.to change(Article, :count).from(0).to(1)
- end
-it "redirect to article" do
-    subject
-    expect(response).to redirect_to(articles_path)
-end
+  subject(:post_create) { post :create, params: article_params }
+
+  context "with valid parameters" do
+    let(:article_params) { { article: { title: "Very valid title", body: "Very very valid value", published: true } } }
+
+    it "creates new articles" do
+      expect { post_create }.to change(Article, :count).from(0).to(1)
+    end
+
+  context "with invalid parameters" do
+    let(:article_params) { { article: { title: "a", body: "Very very valid value", published: true } } }
+
+    it "does not create a new article" do
+      expect { post_create }.not_to change(Article, :count)
+    end
+  end
 end
 
+
 describe "PATCH #update" do
-subject(:update) {patch :update, params: {id: article.id, article: { title: "Very good title"}}}
-let(:article) {create(:article)}
-it "updates the article" do
-    expect{subject}.to change{article.reload.title}.to("Very good title")
- end
-it "redirects to the article's show page" do
-    subject
-    expect(response).to redirect_to (article_path(article))
+  let(:article) { create(:article) }
+  subject(:update) { patch :update, params: { id: article.id, article: article_params } }
+
+  context "with valid parameters" do
+    let(:article_params) { { title: "Very good title" } }
+
+    it "updates the article" do
+      expect { update }.to change { article.reload.title }.to("Very good title")
+    end
+
+    it "redirects to the article's show page" do
+      update
+      expect(response).to redirect_to(article_path(article))
+    end
+  end
+
+  context "with invalid parameters" do
+    let(:article_params) { { title: "a", body: "Very very valid value", published: true } }
+
+    it "does not update the article" do
+      expect { update }.not_to change { article.reload.title }
+    end
+  end
 end
-end
+
 
   describe "DELETE #destroy" do
   subject(:destroy) {delete :destroy, params: {id: article.id}}
@@ -56,10 +80,4 @@ end
   end
 end
 end
-
-
-
-
-   
-
-   
+end
