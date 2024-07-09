@@ -5,7 +5,6 @@ RSpec.describe ArticlesController, type: :controller do
   describe "GET #index" do
     subject(:index) { get :index }
 
-
     it { is_expected.to be_successful }
   end
 
@@ -14,10 +13,8 @@ RSpec.describe ArticlesController, type: :controller do
     subject(:show) { get :show, params: { id: article.id } }
     let(:article) { create(:article) }
 
-
     it { is_expected.to be_successful }
   end
-
 
   describe "POST #create" do
   subject(:post_create) { post :create, params: article_params }
@@ -37,7 +34,6 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 end
-
 
 describe "PATCH #update" do
   let(:article) { create(:article) }
@@ -77,7 +73,7 @@ end
   it "redirects to the articles index" do
     destroy
     expect(response).to redirect_to(articles_path)
+      end
+    end
   end
-end
-end
 end
