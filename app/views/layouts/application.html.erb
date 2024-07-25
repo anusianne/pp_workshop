@@ -8,15 +8,32 @@
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   </head>
-
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <br>
-    <main class="container mx-auto px-5">
+    <body class="bg-gray-100">
+      <header class="bg-red-500 shadow">
+        <div class="container mx-auto px-4 py-6">
+          <nav class="flex justify-between items-center">
+            <div class="flex items-center">
+              <a href="/" class="text-lg font-bold text-gray-900">Home</a>
+            </div>
+            <div>
+              <% if user_signed_in? %>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'ml-4 px-4 py-2 bg-red-500 text-white rounded' %>
+              <% else %>
+              <%= link_to 'Login', new_user_session_path, class: 'ml-4 px-4 py-2 bg-blue-500 text-white rounded' %>
+              <%= link_to 'Sign Up', new_user_registration_path, class: 'ml-4 px-4 py-2 bg-green-500 text-white rounded' %>
+              <% end %>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+      <main class="container mx-auto px-5">
       <%= yield %>
-        
-    </main>
-  
-  </body>
+      </main>
+    </body>
 </html>
