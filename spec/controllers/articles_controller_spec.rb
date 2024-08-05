@@ -1,13 +1,24 @@
 require 'rails_helper'
 
-
 RSpec.describe ArticlesController, type: :controller do
   describe "GET #index" do
     subject(:index) { get :index }
+      context "when user is logged in" do
+      
+      let(:user) {create(:user)}
+
+      before { sign_in user}
 
     it { is_expected.to be_successful }
   end
 
+      it { is_expected.to be_successful }
+    end
+
+    context "when user is not logged in" do
+      it { is_expected.to_not be_successful }
+    end
+  end
 
   describe "GET #show" do
     subject(:show) { get :show, params: { id: article.id } }
