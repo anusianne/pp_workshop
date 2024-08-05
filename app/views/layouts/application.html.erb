@@ -8,6 +8,9 @@
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   </head>
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <br>
     <body class="bg-gray-100">
       <header class="bg-red-500 shadow">
@@ -31,8 +34,6 @@
        <p class="alert"><%= alert %></p>
       <main class="container mx-auto px-5">
       <%= yield %>
-        
       </main>
-  
     </body>
 </html>
