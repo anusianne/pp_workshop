@@ -1,14 +1,22 @@
 require 'rails_helper'
 
-
 RSpec.describe ArticlesController, type: :controller do
   describe "GET #index" do
     subject(:index) { get :index }
+      context "when user is logged in" do
+      
+      let(:user) {create(:user)}
+
+      before { sign_in user}
 
 
-    it { is_expected.to be_successful }
+      it { is_expected.to be_successful }
+    end
+
+    context "when user is not logged in" do
+      it { is_expected.to_not be_successful }
+    end
   end
-
 
   describe "GET #show" do
     subject(:show) { get :show, params: { id: article.id } }
@@ -17,7 +25,6 @@ RSpec.describe ArticlesController, type: :controller do
 
     it { is_expected.to be_successful }
   end
-
 
   describe "POST #create" do
   subject(:post_create) {post :create, params: { article: { title: "Very valid title", body: "Very very valid value", published: true}}}
