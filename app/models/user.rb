@@ -11,6 +11,8 @@ class User < ApplicationRecord
   format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true
 
+  has_many :articles, dependent: :nullify
+
 end
 
 

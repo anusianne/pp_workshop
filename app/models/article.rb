@@ -3,4 +3,5 @@ class Article < ApplicationRecord
     validates :body, presence: true, length: { minimum: 15, maximum: 3000 }
     validates :published, inclusion: { in: [true, false] }
     has_one_attached :image
+    belongs_to :user, optional: true
 end
