@@ -17,6 +17,7 @@ RSpec.describe ArticlesController, type: :controller do
 
     context "when user is not logged in" do
       it { is_expected.to redirect_to(new_user_session_path) }
+      it { is_expected.not_to be_successful }
     end
   end
 
