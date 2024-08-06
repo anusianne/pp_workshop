@@ -43,8 +43,10 @@ RSpec.describe ArticlesController, type: :controller do
 
       before { sign_in user }
 
+
       it "creates a new article" do
         expect { subject }.to change(Article, :count).from(0).to(1)
+        expect(Article.last.user_id).to eq(user.id)
       end
 
       it "redirects to the article index" do

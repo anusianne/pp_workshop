@@ -91,4 +91,7 @@ RSpec.describe Article, type: :model do
       end
     end
   end
+  describe "associations" do
+    it { should belong_to(:user).optional }
+  end
 end
