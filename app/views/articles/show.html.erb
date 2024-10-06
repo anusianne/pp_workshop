@@ -1,42 +1,48 @@
-<h3 class="text-4xl font-bold text-sky-400 text-center mt-12 mb-8">Article card</h3>
 <a href="<%= articles_path %>" class="flex hover:text-sky-600">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke-width="1.5" stroke="currentColor" class="size-6 text-sky-400 mt-1 hover:text-sky-600">
     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
   </svg>
   <span class="flex justify-end font-bold text-sky-300 text-2xl pl-2 hover:text-sky-600">Back to articles</span>
 </a>
+<div class="container flex flex-col justify-center w-1/2 mx-auto">
+  <h3 class="text-4xl font-bold italic text-slate-700 text-left my-4 py-4">Article content:</h3>
+  <div class="flex flex-col justify-center bg-white border shadow-lg rounded-lg w-full">
+    <div class="p-4">
+      <% if @article.image.attached? && @article.image.persisted? %>
+      <%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
 
-<div class="grid bg-white border shadow-lg rounded-lg mt-8 w-1/2 ml-96 h-80 p-12">
-  <div class="pl-16 pt-4">
-<h1 class="font-bold"><%= @article.title %></h1>
+      <p>
+        <strong>File:</strong>
+          <%= @article.image.filename %>
+        <% else %>
+          No file attached.
+        <% end %>
+      </p>
+      <h1 class="text-2xl font-bold text-slate-900">
+        <%= @article.title %></h1>
+      <p class="mt-1 p-4 w-full text-base font-medium bg-slate-100 text-gray-500 rounded-xl">
+        <%= @article.body %></p>
+      <p class="mt-2 text-xs text-gray-500 italic">Status: <%= @article.published ? 'Published' : 'Draft' %></p>
 
-<p class=pt-4><%= @article.body %></p>
-<p>Status: <%= @article.published ? 'Published' : 'Draft' %></p>
-
-<p>
+      <p>
   <strong>Author:</strong>
   <%= @article.user ? @article.user.email : "Autor anonimowy" %>
 </p>
-
-<% if @article.image.attached? && @article.image.persisted? %>
-<%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
-
-<p>
-  <strong>File:</strong>
-    <%= @article.image.filename %>
-  <% else %>
-    No file attached.
-  <% end %>
-</p>
-
-<div class="pt-4 flex flex-col items-end">
-<%= link_to 'Edit', edit_article_path(@article) if @article.user == current_user %> |
-<%= link_to 'Back', articles_path %>
-<%= link_to "Delete this article", articles_path(@article), data: {
-turbo_method: :delete,
-turbo_confirm: "Are you sure you want to delete the article?"
-} %>
-</div>
+    <div class=" flex flex-row mt-4 justify-between">
+      <%= link_to edit_article_path(@article), class:"bg-transparent hover:bg-blue-500 text-blue-700 transitions-colors duration-300 font-semibold hover:text-white py-2 px-3 border border-blue-500 hover:border-transparent rounded text-xs flex items-center" do %>
+        <span>Edit</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="currentColor" class="size-6 ml-2 w-5 h-5">
+          <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
+        </svg>
+        <% end %>
+        <%= link_to article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the article?" }, class:"bg-transparent hover:bg-red-500 text-red-500 transitions-colors duration-300 font-semibold hover:text-white py-2 px-3 border border-red-500 hover:border-transparent rounded text-xs flex items-center" do %>
+          <span>Delete</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="currentColor" class="size-6 ml-2 w-5 h-5">
+            <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+    </div>
+  </div>
 </div>
 </div>
 

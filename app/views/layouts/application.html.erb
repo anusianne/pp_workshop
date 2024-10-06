@@ -7,31 +7,34 @@
     <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/e1dbeba042.js" crossorigin="anonymous"></script>
   </head>
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <br>
     <body class="bg-gray-100">
-      <header class="bg-red-500 shadow">
-        <div class="container mx-auto px-4 py-6">
-          <nav class="flex justify-between items-center">
+      <header class="bg-red-200 shadow">
+        <div class="container flex mx-auto lg px-64 py-6">
+          <nav class="flex justify-between items-center w-full">
             <div class="flex items-center">
-              <a href="/" class="text-lg font-bold text-gray-900">Home</a>
+              <%= link_to root_path, class:"" do%>
+                <i class="fa-solid fa-home fa-2xl text-gray-700 transitions-colors duration-300 hover:text-gray-900 font-bold rounded-full"></i>
+                <% end %>
             </div>
             <div>
               <% if user_signed_in? %>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'ml-4 px-4 py-2 bg-red-500 text-white rounded' %>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'ml-4 px-4 py-2 bg-red-500 transitions-colors duration-300 hover:bg-red-700 text-white rounded' %>
               <% else %>
-              <%= link_to 'Login', new_user_session_path, class: 'ml-4 px-4 py-2 bg-blue-500 text-white rounded' %>
-              <%= link_to 'Sign Up', new_user_registration_path, class: 'ml-4 px-4 py-2 bg-green-500 text-white rounded' %>
+              <%= link_to 'Login', new_user_session_path, class: 'ml-4 px-4 py-2 bg-blue-500 text-white rounded transitions-colors duration-300' %>
+              <%= link_to 'Sign Up', new_user_registration_path, class: 'ml-4 px-4 py-2 bg-green-500 text-white rounded transitions-colors duration-300' %>
               <% end %>
             </div>
           </nav>
         </div>
       </header>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <span class="inline-flex items-center rounded-md bg-green-50 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 notice">
+        <%= notice %>
+      </span>
+      <span class="inline-flex items-center rounded-md bg-red-50 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 alert">
+        <%= alert %>
+      </span>
       <main class="container mx-auto px-5">
       <%= yield %>
       </main>
