@@ -11,7 +11,7 @@
     <p class="mt-1 text-xs text-gray-500 col-span-6">
       <strong>Author:</strong> <%= article.user ? article.user.email : "Autor anonimowy" %>
     </p>
-</div>
+
   <div class="flex mt-4 justify-between">
     <div class="flex flex-row space-x-4">
         <%= link_to article_path(article), class:"bg-transparent hover:bg-green-500 text-green-500 transitions-colors duration-300 font-semibold hover:text-white py-2 px-3 border border-green-500 hover:border-transparent rounded text-xs flex items-center" do %>
