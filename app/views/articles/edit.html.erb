@@ -1,26 +1,27 @@
-<h3 class="text-4xl font-bold text-sky-400 text-center mt-12 mb-8">Edit an article</h3>
 <a href="<%= articles_path %>" class="flex hover:text-sky-600">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke-width="1.5" stroke="currentColor" class="size-6 text-sky-400 mt-1 hover:text-sky-600">
     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
   </svg>
   <span class="flex justify-end font-bold text-sky-300 text-2xl pl-2 hover:text-sky-600">Back to articles</span>
 </a>
-<div class="grid bg-white border shadow-lg rounded-lg mt-8 w-1/2 ml-96 p-12">
-  <div class="pl-16 pt-4">
-<% if @article.image.attached? %>
-<%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
-  <strong>File:</strong>
-    <%= @article.image.filename %>
-  <% else %>
-    No file attached.
-  <% end %>
-<%= render "form", article: @article %>
-<button type="button" class="text-red-600 font-semibold shadow-lg rounded-lg border border-red-600 ml-96 p-2 hover:bg-red-600 hover:text-white">
-<%= link_to "Delete this article", article_path(@article), data: {
-turbo_method: :delete,
-turbo_confirm: "Are you sure you want to delete the article?"
-} %>
-</button>
-
-</div>
+<div class="container flex flex-col justify-center w-1/2 mx-auto">
+  <h3 class="text-4xl font-bold italic text-slate-700 text-left my-4 py-4">Edit an article</h3>
+  <div class="container flex flex-col justify-center bg-white border shadow-lg rounded-lg mx-auto p-4">
+  <% if @article.image.attached? %>
+  <%= image_tag @article.image.variant(resize_to_fit: [200, 200]) %>
+    <div class="text-sky-400">File:</div>
+      <%= @article.image.filename %>
+    <% else %>
+      No file attached.
+    <% end %>
+  <%= render "form", article: @article %>
+    <%= link_to "Delete this article", 
+    article_path(@article), 
+    class:" w-fit text-red-600 font-semibold shadow-lg rounded-lg border border-red-600 p-2 hover:bg-red-600 hover:text-white", 
+    data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure you want to delete the article?"
+    } %>
+    </div>
+  </div>
 </div>
